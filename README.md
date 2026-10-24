@@ -71,7 +71,7 @@ Escribe el programa en `src/main.rs` y ejecútalo con `cargo run`. Para mantener
 
 - [✅] **16. Gestor de contactos:** crear, buscar, editar y eliminar contactos en memoria.
 - [✅] **17. Sistema de inventario:** registrar productos, precios y cantidades, y calcular el valor del inventario.
-- [ ] **18. Analizador CSV:** leer registros numéricos de un archivo CSV, calcular estadísticas y guardar resultados.
+- [✅] **18. Analizador CSV:** leer registros numéricos de un archivo CSV, calcular estadísticas y guardar resultados.
 - [ ] **19. Cliente de una API:** consultar una API pública, procesar una respuesta JSON y mostrar campos seleccionados.
 - [ ] **20. Buscador de archivos:** buscar archivos por nombre o extensión dentro de una carpeta y sus subcarpetas.
 
