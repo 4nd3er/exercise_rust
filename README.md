@@ -74,7 +74,19 @@ Escribe el programa en `src/main.rs` y ejecútalo con `cargo run`. Para mantener
 - [✅] **18. Analizador CSV:** leer registros numéricos de un archivo CSV, calcular estadísticas y guardar resultados.
 - [✅] **19. Cliente de una API:** consultar una API pública, procesar una respuesta JSON y mostrar campos seleccionados.
 - [✅] **20. Buscador de archivos:** buscar archivos por nombre o extensión dentro de una carpeta y sus subcarpetas.
-- [✅] **20. Calculadora de edad:** Crea un programa que solicite el año de nacimiento y calcule la edad aproximada de la persona en 2026.
+- [ ] **21. Gestor de tareas persistente:** Crea un gestor de tareas que almacene su información en un archivo JSON.
+- [ ] **22. Analizador de registros (Logs):** Desarrolla un programa que lea archivos .log y extraiga información relevante.
+- [ ] **23. Buscador avanzado de archivos:** Crea una herramienta de búsqueda de archivos desde la terminal.
+- [ ] **24. Detector de archivos duplicados:** Desarrolla un programa que identifique archivos duplicados dentro de un directorio.
+- [ ] **25. Sistema de inventario con genéricos:** Desarrolla un inventario que pueda almacenar diferentes tipos de productos.
+- [ ] **26. Sistema de biblioteca:** Crea un sistema para administrar una biblioteca.
+- [ ] **27. Implementa tu propio iterador:** Crea un iterador personalizado que genere números de Fibonacci.
+- [ ] **28. Procesamiento multihilo de archivos:** Desarrolla un programa que analice varios archivos simultáneamente.
+- [ ] **29. Servidor TCP:** Crea un servidor TCP que pueda recibir conexiones de varios clientes.
+- [ ] **30. Cliente de API asíncrono:** Desarrolla un programa que consulte varias APIs y procese las respuestas simultáneamente.
+- [ ] **31. Sistema de caché:** Implementa un sistema de caché en memoria.
+- [ ] **32. Analizador de expresiones matemáticas:** Construye una calculadora capaz de interpretar expresiones como: "(15 + 5) * 2 / (4 - 2)".
+
 
 **Conceptos:** `struct`, métodos, archivos, crates, JSON, solicitudes HTTP, `std::fs`, rutas y recursividad.
 
