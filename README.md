@@ -74,6 +74,7 @@ Escribe el programa en `src/main.rs` y ejecútalo con `cargo run`. Para mantener
 - [✅] **18. Analizador CSV:** leer registros numéricos de un archivo CSV, calcular estadísticas y guardar resultados.
 - [✅] **19. Cliente de una API:** consultar una API pública, procesar una respuesta JSON y mostrar campos seleccionados.
 - [✅] **20. Buscador de archivos:** buscar archivos por nombre o extensión dentro de una carpeta y sus subcarpetas.
+- [✅] **20. Calculadora de edad:** Crea un programa que solicite el año de nacimiento y calcule la edad aproximada de la persona en 2026.
 
 **Conceptos:** `struct`, métodos, archivos, crates, JSON, solicitudes HTTP, `std::fs`, rutas y recursividad.
 
