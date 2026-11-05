@@ -2,19 +2,21 @@
 use serde::{Deserialize, Serialize};
 use std::{
     error::Error,
+    fmt::Debug,
     fs::File,
     io::{BufReader, stdin},
 };
 
 #[derive(Serialize, Deserialize, Debug)]
 enum State {
+    Pending,
     Completed,
-    Finished,
 }
-struct DirFile;
+struct Constraints;
 
-impl DirFile {
-    const DIR: &str = "todo.json";
+impl Constraints {
+    const DIR_FILE: &str = "todo.json";
+    const TASK_KEYS: [&str; 4] = ["nombre", "descripcion", "fecha", "estado"];
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -33,7 +35,7 @@ struct Tasks {
 
 fn find_file() -> Result<Tasks, Box<dyn Error>> {
     // let file = File::options().append(true).open("todo.json")?;
-    let file = File::open(DirFile::DIR)?;
+    let file = File::open(Constraints::DIR_FILE)?;
     let reader = BufReader::new(&file);
     let json: Tasks = serde_json::from_reader(reader).unwrap();
     Ok(json)
@@ -41,17 +43,18 @@ fn find_file() -> Result<Tasks, Box<dyn Error>> {
 
 fn p_a_i(str: &str) -> String {
     let mut input = String::new();
-    println!("Digita el {}", str);
+    println!("{}", str);
     let _ = stdin().read_line(&mut input).unwrap_or_default();
     input.trim().to_string()
 }
 
 fn create_task(id_task: i32) -> Task {
-    let task_strs = vec!["nombre", "descripcion", "fecha", "estado"];
-    let mut values: Vec<String> = Vec::with_capacity(task_strs.len());
+    let mut values: Vec<String> = Vec::with_capacity(Constraints::TASK_KEYS.len());
 
-    for str in task_strs {
-        let input = p_a_i(str);
+    for key in Constraints::TASK_KEYS {
+        let mut string = String::from("Digita el ");
+        string.push_str(key);
+        let input = p_a_i(string.as_str());
         values.push(input);
     }
 
@@ -65,19 +68,49 @@ fn create_task(id_task: i32) -> Task {
     new_task
 }
 
-fn add_task(json: &mut Tasks, new_task: Task) -> Result<(), Box<dyn Error>> {
-    json.tasks.push(new_task);
-
-    let new_file = File::create(DirFile::DIR).unwrap();
+fn update_file(json: &Tasks) -> Result<(), Box<dyn Error>> {
+    let new_file = File::create(Constraints::DIR_FILE).unwrap();
     serde_json::to_writer_pretty(new_file, &json)?;
     Ok(())
 }
 
-fn search_task<'a>(json: &'a Tasks, id: i32) -> Result<Vec<&'a Task>, String> {
+fn add_task(json: &mut Tasks, new_task: Task) {
+    json.tasks.push(new_task);
+}
+
+fn search_task<'a>(json: &'a mut Tasks, id: i32) -> Result<Vec<&'a mut Task>, String> {
     if id == 0 || id > json.tasks.len() as i32 {
         return Err("No se encontro la tarea".to_string());
     }
-    Ok(json.tasks.iter().filter(|task| task.id == id).collect())
+    Ok(json.tasks.iter_mut().filter(|task| task.id == id).collect())
+}
+
+fn edit_task(task: &mut Vec<&mut Task>) {
+    println!("Que campo quieres editar?");
+    for i in 0..Constraints::TASK_KEYS.len() {
+        println!("({}) {}", i + 1, Constraints::TASK_KEYS[i]);
+    }
+    let input = p_a_i("");
+    let instruction: i32 = input.parse().unwrap_or_default();
+    match instruction {
+        1 => {
+            let input = p_a_i("Digite el nuevo valor");
+            task[0].name = input.trim().to_string();
+        }
+        2 => {
+            let input = p_a_i("Digite el nuevo valor");
+            task[0].description = input.trim().to_string();
+        }
+        3 => {
+            let input = p_a_i("Digite el nuevo valor");
+            task[0].date = input.trim().to_string();
+        }
+        4 => {
+            let _ = p_a_i("Digite el nuevo valor");
+            task[0].state = State::Completed;
+        }
+        _ => println!("Instruccion no valida"),
+    }
 }
 
 fn main() {
@@ -103,16 +136,16 @@ fn main() {
                     1 => {
                         // ? Añadir
                         let new_task = create_task(json.tasks.len() as i32 + 1);
-
-                        match add_task(&mut json, new_task) {
-                            Ok(_) => println!("Tarea añadida exitosamente"),
+                        add_task(&mut json, new_task);
+                        match update_file(&json) {
+                            Ok(_) => println!("Archivo actualizado!"),
                             Err(error) => println!("error: {}", error),
                         }
                     }
                     2 => {
                         let input = p_a_i("id");
                         let id: i32 = input.parse().unwrap_or(0);
-                        match search_task(&json, id) {
+                        match search_task(&mut json, id) {
                             Ok(task) => {
                                 println!("{}", task[0].name);
                                 println!("{}", task[0].description);
@@ -121,8 +154,18 @@ fn main() {
                         }
                     }
                     3 => {
-                        println!("Actualizar");
-                        // ? Actualizar
+                        let input = p_a_i("Digita el id");
+                        let id: i32 = input.parse().unwrap_or(0);
+                        match search_task(&mut json, id) {
+                            Ok(mut task) => {
+                                edit_task(&mut task);
+                                match update_file(&json) {
+                                    Ok(_) => println!("Archivo actualizado!"),
+                                    Err(error) => println!("error: {}", error),
+                                }
+                            }
+                            Err(error) => println!("{}", error),
+                        }
                     }
                     4 => {
                         println!("Eliminar");
