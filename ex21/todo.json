@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "id": 0,
+      "name": "hacer tarea",
+      "description": "hacer la tarea para que no me reganen",
+      "date": "fecha de tal",
+      "state": "Completed"
+    },
+    {
+      "id": 1,
+      "name": "tarea 2",
+      "description": "test de tarea 2",
+      "date": "fecha tin de tan",
+      "state": "Completed"
+    },
+    {
+      "id": 2,
+      "name": "tal 3",
+      "description": "tal 3",
+      "date": "tal 3",
+      "state": "Completed"
+    }
+  ]
+}
