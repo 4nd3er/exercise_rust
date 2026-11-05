@@ -63,15 +63,9 @@ fn create_task(id_task: i32) -> Task {
         name: values[0].to_string(),
         description: values[1].to_string(),
         date: values[2].to_string(),
-        state: State::Completed,
+        state: State::Pending,
     };
     new_task
-}
-
-fn update_file(json: &Tasks) -> Result<(), Box<dyn Error>> {
-    let new_file = File::create(Constraints::DIR_FILE).unwrap();
-    serde_json::to_writer_pretty(new_file, &json)?;
-    Ok(())
 }
 
 fn add_task(json: &mut Tasks, new_task: Task) {
@@ -113,6 +107,12 @@ fn edit_task(task: &mut Vec<&mut Task>) {
     }
 }
 
+fn update_file(json: &Tasks) -> Result<(), Box<dyn Error>> {
+    let new_file = File::create(Constraints::DIR_FILE).unwrap();
+    serde_json::to_writer_pretty(new_file, &json)?;
+    Ok(())
+}
+
 fn main() {
     match find_file() {
         Ok(mut json) => {
@@ -143,6 +143,7 @@ fn main() {
                         }
                     }
                     2 => {
+                        // ? Buscar
                         let input = p_a_i("id");
                         let id: i32 = input.parse().unwrap_or(0);
                         match search_task(&mut json, id) {
@@ -154,11 +155,13 @@ fn main() {
                         }
                     }
                     3 => {
+                        // ? Editar
                         let input = p_a_i("Digita el id");
                         let id: i32 = input.parse().unwrap_or(0);
                         match search_task(&mut json, id) {
                             Ok(mut task) => {
                                 edit_task(&mut task);
+                                
                                 match update_file(&json) {
                                     Ok(_) => println!("Archivo actualizado!"),
                                     Err(error) => println!("error: {}", error),
@@ -168,8 +171,8 @@ fn main() {
                         }
                     }
                     4 => {
-                        println!("Eliminar");
                         // ? Eliminar
+                        println!("Eliminar");
                     }
                     5 => {
                         for task in &json.tasks {
