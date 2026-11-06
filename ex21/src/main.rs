@@ -1,4 +1,5 @@
 // * Crea un gestor de tareas que almacene su información en un archivo JSON.
+use chrono::Local;
 use serde::{Deserialize, Serialize};
 use std::{
     error::Error,
@@ -9,19 +10,26 @@ use std::{
 
 #[derive(Serialize, Deserialize, Debug)]
 enum State {
-    Pending,
-    Completed,
+    Pendiente,
+    Completado,
 }
 
 const DIR_FILE: &str = "todo.json";
-const TASK_KEYS: Vec<String> = vec![];
+fn task_keys() -> Vec<String> {
+    vec![
+        "nombre".to_string(),
+        "descripcion".to_string(),
+        "estado".to_string(),
+    ]
+}
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Task {
     id: i32,
     name: String,
     description: String,
-    date: String,
+    created_at: String,
+    updated_at: String,
     state: State,
 }
 
@@ -33,6 +41,11 @@ struct Tasks {
 enum ParamsPln {
     Text(String),
     List(Vec<String>),
+}
+
+fn current_time() -> String {
+    let now = Local::now().to_utc();
+    now.to_string()
 }
 
 fn show_strings(strings: ParamsPln) {
@@ -61,22 +74,51 @@ fn find_file() -> Result<Tasks, Box<dyn Error>> {
     Ok(json)
 }
 
-fn create_task(id_task: i32) -> Task {
-    let mut values: Vec<String> = Vec::with_capacity(TASK_KEYS.len());
+fn get_value_state () -> State {
+    let state: State;
+    loop {
+        println!("Elige el estado");
+        let input_st = p_a_i(ParamsPln::List(vec![
+            "(1) Pendiente".to_string(),
+            "(2) Completado".to_string(),
+        ]));
+        match input_st.trim() {
+            "1" => {
+                state = State::Pendiente;
+                break;
+            }
+            "2" => {
+                state = State::Completado;
+                break;
+            }
+            _ => println!("Estado no valido")
+        }
+    }
+    state
+}
 
-    for key in TASK_KEYS {
+fn create_task(id_task: i32) -> Task {
+    let mut values: Vec<String> = Vec::with_capacity(task_keys().len());
+
+    for key in task_keys() {
+        if key == "estado" {
+            continue;
+        }
         let mut string = String::from("Digita el ");
         string.push_str(key.as_str());
         let input = p_a_i(ParamsPln::Text(string));
         values.push(input);
     }
 
+    let state = get_value_state();
+
     let new_task = Task {
         id: id_task,
         name: values[0].to_string(),
         description: values[1].to_string(),
-        date: values[2].to_string(),
-        state: State::Pending,
+        created_at: current_time(),
+        updated_at: current_time(),
+        state,
     };
     new_task
 }
@@ -101,7 +143,7 @@ fn get_position_task<'a>(json: &'a mut Tasks, id: i32) -> Result<Option<usize>, 
 
 fn edit_task(task: &mut Vec<&mut Task>) {
     println!("Que campo quieres editar?");
-    show_strings(ParamsPln::List(TASK_KEYS));
+    show_strings(ParamsPln::List(task_keys()));
     let input = p_a_i(ParamsPln::Text("".to_string()));
     let instruction: i32 = input.parse().unwrap_or_default();
     match instruction {
@@ -114,15 +156,12 @@ fn edit_task(task: &mut Vec<&mut Task>) {
             task[0].description = input.trim().to_string();
         }
         3 => {
-            let input = p_a_i(ParamsPln::Text("Digite el nuevo valor".to_string()));
-            task[0].date = input.trim().to_string();
-        }
-        4 => {
-            let _ = p_a_i(ParamsPln::Text("Digite el nuevo valor".to_string()));
-            task[0].state = State::Completed;
+            let state = get_value_state();
+            task[0].state = state;
         }
         _ => println!("Instruccion no valida"),
     }
+    task[0].updated_at = current_time();
 }
 
 fn delete_task(json: &mut Tasks, index: usize) {
@@ -138,7 +177,6 @@ fn update_file(json: &Tasks) -> Result<(), Box<dyn Error>> {
 fn main() {
     match find_file() {
         Ok(mut json) => {
-            println!("{:?}", json.tasks);
             loop {
                 let mut input = String::new();
                 show_strings(ParamsPln::List(vec![
