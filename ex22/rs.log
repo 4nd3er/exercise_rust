@@ -1,0 +1,109 @@
+[2026-11-08 08:00:01] INFO - Servicio de autenticacion iniciado
+[2026-11-08 08:00:03] INFO - Conexion con la base de datos establecida
+[2026-11-08 08:01:12] INFO - Usuario 'ana' inicio sesion desde 192.168.1.14
+[2026-11-08 08:02:45] WARNING - Intento de inicio de sesion fallido para usuario 'guest'
+[2026-11-08 08:03:02] ERROR - No se pudo consultar el perfil del usuario: timeout de base de datos
+[2026-11-08 08:03:18] INFO - Reintento de consulta programado
+[2026-11-08 08:03:20] ERROR - No se pudo consultar el perfil del usuario: timeout de base de datos
+[2026-11-08 08:04:10] INFO - Consulta de perfil completada para usuario 'ana'
+[2026-11-08 08:05:31] WARNING - Uso de memoria superior al 75 por ciento
+[2026-11-08 08:06:04] INFO - Archivo 'usuarios.csv' recibido (245 KB)
+[2026-11-08 08:06:07] ERROR - Formato CSV invalido en la linea 18
+[2026-11-08 08:07:22] INFO - Importacion cancelada: no se guardaron cambios
+[2026-11-08 08:09:44] INFO - Usuario 'carlos' inicio sesion desde 192.168.1.21
+[2026-11-08 08:10:01] WARNING - Token de acceso proximo a expirar para usuario 'carlos'
+[2026-11-08 08:11:16] ERROR - No se pudo enviar el correo de confirmacion: servidor SMTP no disponible
+[2026-11-08 08:12:05] INFO - Reintento de envio de correo iniciado
+[2026-11-08 08:12:09] ERROR - No se pudo enviar el correo de confirmacion: servidor SMTP no disponible
+[2026-11-08 08:14:33] INFO - Servicio de correo restablecido
+[2026-11-08 08:15:10] INFO - Correo de confirmacion enviado a carlos@example.com
+[2026-11-08 08:17:48] WARNING - Solicitud recibida con parametro opcional vacio: 'telefono'
+[2026-11-08 08:19:02] INFO - Usuario 'maria' inicio sesion desde 192.168.1.33
+[2026-11-08 08:20:14] ERROR - No se encontro el producto con ID 8842
+[2026-11-08 08:20:40] INFO - Busqueda de producto finalizada
+[2026-11-08 08:22:01] INFO - Copia de seguridad iniciada
+[2026-11-08 08:22:39] WARNING - Espacio disponible en disco inferior al 20 por ciento
+[2026-11-08 08:24:55] ERROR - No se pudo escribir el archivo de respaldo: permiso denegado
+[2026-11-08 08:25:10] INFO - Reintentando copia de seguridad
+[2026-11-08 08:25:42] ERROR - No se pudo escribir el archivo de respaldo: permiso denegado
+[2026-11-08 08:27:03] INFO - Copia de seguridad almacenada correctamente en /backups/daily-2026-11-08.tar
+[2026-11-08 08:30:18] INFO - Servicio de autenticacion operativo
+[2026-11-08 09:01:04] INFO - Usuario 'pedro' inicio sesion desde 10.0.0.8
+[2026-11-08 09:02:17] WARNING - Se detectaron 5 solicitudes en menos de un segundo desde 10.0.0.8
+[2026-11-08 09:03:11] ERROR - Limite de conexiones simultaneas alcanzado
+[2026-11-08 09:03:29] ERROR - Limite de conexiones simultaneas alcanzado
+[2026-11-08 09:04:02] INFO - Conexion liberada para usuario 'ana'
+[2026-11-08 09:05:40] INFO - Solicitud procesada en 142 ms
+[2026-11-08 09:07:51] WARNING - Tiempo de respuesta elevado: 1850 ms
+[2026-11-08 09:09:16] INFO - Cache actualizada: 128 elementos
+[2026-11-08 09:10:02] ERROR - No se pudo conectar con el servicio de pagos
+[2026-11-08 09:10:28] ERROR - No se pudo conectar con el servicio de pagos
+[2026-11-08 09:11:07] WARNING - Servicio de pagos no disponible; se utilizara reintento automatico
+[2026-11-08 09:13:49] INFO - Conexion con el servicio de pagos restablecida
+[2026-11-08 09:14:03] INFO - Pago aprobado para la orden 50128
+[2026-11-08 09:16:22] INFO - Pago aprobado para la orden 50129
+[2026-11-08 09:18:44] WARNING - Orden 50130 pendiente de confirmacion del proveedor
+[2026-11-08 09:20:09] ERROR - No se pudo conectar con el servicio de pagos
+[2026-11-08 09:22:31] INFO - Pago aprobado para la orden 50131
+[2026-11-08 10:02:05] INFO - Tarea de limpieza temporal iniciada
+[2026-11-08 10:02:22] ERROR - No se pudo eliminar el archivo temporal: archivo en uso
+[2026-11-08 10:03:10] INFO - Archivo temporal eliminado despues del segundo intento
+[2026-11-08 10:05:47] WARNING - Se omitieron 3 archivos por extension no permitida
+[2026-11-08 10:07:13] INFO - Tarea de limpieza temporal finalizada
+[2026-11-08 11:30:00] INFO - Usuario 'ana' cerro sesion
+[2026-11-08 12:00:01] INFO - Servicio de autenticacion sigue activo
+[2026-11-09 07:58:44] INFO - Servicio de autenticacion iniciado
+[2026-11-09 08:00:12] INFO - Conexion con la base de datos establecida
+[2026-11-09 08:02:30] INFO - Usuario 'ana' inicio sesion desde 192.168.1.14
+[2026-11-09 08:03:02] WARNING - Uso de memoria superior al 75 por ciento
+[2026-11-09 08:04:17] ERROR - No se pudo consultar el perfil del usuario: timeout de base de datos
+[2026-11-09 08:05:01] INFO - Consulta de perfil completada para usuario 'ana'
+[2026-11-09 08:07:35] INFO - Archivo 'productos.csv' recibido (512 KB)
+[2026-11-09 08:08:10] ERROR - Formato CSV invalido en la linea 42
+[2026-11-09 08:09:00] WARNING - Importacion finalizada con 1 registro omitido
+[2026-11-09 08:10:25] INFO - Usuario 'carlos' inicio sesion desde 192.168.1.21
+[2026-11-09 08:12:48] ERROR - No se pudo enviar el correo de confirmacion: servidor SMTP no disponible
+[2026-11-09 08:14:19] INFO - Servicio de correo restablecido
+[2026-11-09 08:15:02] INFO - Correo de confirmacion enviado a carlos@example.com
+[2026-11-09 08:18:36] WARNING - Token de acceso proximo a expirar para usuario 'carlos'
+[2026-11-09 08:20:11] ERROR - No se encontro el producto con ID 9921
+[2026-11-09 08:21:07] INFO - Busqueda de producto finalizada
+[2026-11-09 08:24:50] WARNING - Espacio disponible en disco inferior al 20 por ciento
+[2026-11-09 08:26:14] ERROR - No se pudo escribir el archivo de respaldo: permiso denegado
+[2026-11-09 08:28:33] INFO - Copia de seguridad almacenada correctamente en /backups/daily-2026-11-09.tar
+[2026-11-09 09:00:05] INFO - Usuario 'maria' inicio sesion desde 192.168.1.33
+[2026-11-09 09:02:40] WARNING - Tiempo de respuesta elevado: 2100 ms
+[2026-11-09 09:04:51] ERROR - Limite de conexiones simultaneas alcanzado
+[2026-11-09 09:06:18] INFO - Conexion liberada para usuario 'pedro'
+[2026-11-09 09:09:44] ERROR - No se pudo conectar con el servicio de pagos
+[2026-11-09 09:11:20] INFO - Conexion con el servicio de pagos restablecida
+[2026-11-09 09:12:03] INFO - Pago aprobado para la orden 50301
+[2026-11-09 09:15:37] WARNING - Orden 50302 pendiente de confirmacion del proveedor
+[2026-11-09 09:18:08] INFO - Pago aprobado para la orden 50302
+[2026-11-09 10:00:00] INFO - Inicio de mantenimiento programado
+[2026-11-09 10:01:14] WARNING - Una tarea programada supero el tiempo esperado
+[2026-11-09 10:03:29] ERROR - No se pudo eliminar el archivo temporal: archivo en uso
+[2026-11-09 10:04:02] INFO - Archivo temporal eliminado despues del segundo intento
+[2026-11-09 10:06:45] INFO - Mantenimiento finalizado correctamente
+[2026-11-09 10:30:12] WARNING - Uso de CPU superior al 85 por ciento
+[2026-11-09 10:31:50] ERROR - Proceso de generacion de reporte finalizo con codigo 2
+[2026-11-09 10:33:17] INFO - Reporte diario generado correctamente
+[2026-11-09 11:45:00] INFO - Usuario 'maria' cerro sesion
+[2026-11-10 08:00:00] INFO - Servicio de autenticacion iniciado
+[2026-11-10 08:01:11] INFO - Conexion con la base de datos establecida
+[2026-11-10 08:02:03] INFO - Usuario 'pedro' inicio sesion desde 10.0.0.8
+[2026-11-10 08:03:28] WARNING - Uso de memoria superior al 75 por ciento
+[2026-11-10 08:04:52] ERROR - No se pudo consultar el perfil del usuario: timeout de base de datos
+[2026-11-10 08:05:34] ERROR - No se pudo consultar el perfil del usuario: timeout de base de datos
+[2026-11-10 08:07:09] INFO - Consulta de perfil completada para usuario 'pedro'
+[2026-11-10 08:09:16] INFO - Solicitud procesada en 98 ms
+[2026-11-10 08:11:42] WARNING - Se detectaron 8 solicitudes en menos de un segundo desde 10.0.0.8
+[2026-11-10 08:13:05] ERROR - Limite de conexiones simultaneas alcanzado
+[2026-11-10 08:14:37] INFO - Conexion liberada para usuario 'carlos'
+[2026-11-10 08:17:22] ERROR - No se pudo conectar con el servicio de pagos
+[2026-11-10 08:18:56] INFO - Conexion con el servicio de pagos restablecida
+[2026-11-10 08:20:10] INFO - Pago aprobado para la orden 50410
+[2026-11-10 08:22:41] WARNING - Espacio disponible en disco inferior al 20 por ciento
+[2026-11-10 08:25:03] ERROR - No se pudo escribir el archivo de respaldo: permiso denegado
+[2026-11-10 08:27:46] INFO - Copia de seguridad almacenada correctamente en /backups/daily-2026-11-10.tar
+[2026-11-10 09:00:00] INFO - Verificacion automatica completada
