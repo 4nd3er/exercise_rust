@@ -74,8 +74,8 @@ Escribe el programa en `src/main.rs` y ejecútalo con `cargo run`. Para mantener
 - [✅] **18. Analizador CSV:** leer registros numéricos de un archivo CSV, calcular estadísticas y guardar resultados.
 - [✅] **19. Cliente de una API:** consultar una API pública, procesar una respuesta JSON y mostrar campos seleccionados.
 - [✅] **20. Buscador de archivos:** buscar archivos por nombre o extensión dentro de una carpeta y sus subcarpetas.
-- [ ] **21. Gestor de tareas persistente:** Crea un gestor de tareas que almacene su información en un archivo JSON.
-- [ ] **22. Analizador de registros (Logs):** Desarrolla un programa que lea archivos .log y extraiga información relevante.
+- [✅] **21. Gestor de tareas persistente:** Crea un gestor de tareas que almacene su información en un archivo JSON.
+- [✅] **22. Analizador de registros (Logs):** Desarrolla un programa que lea archivos .log y extraiga información relevante.
 - [ ] **23. Buscador avanzado de archivos:** Crea una herramienta de búsqueda de archivos desde la terminal.
 - [ ] **24. Detector de archivos duplicados:** Desarrolla un programa que identifique archivos duplicados dentro de un directorio.
 - [ ] **25. Sistema de inventario con genéricos:** Desarrolla un inventario que pueda almacenar diferentes tipos de productos.
