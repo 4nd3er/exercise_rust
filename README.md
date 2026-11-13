@@ -77,7 +77,7 @@ Escribe el programa en `src/main.rs` y ejecútalo con `cargo run`. Para mantener
 - [✅] **21. Gestor de tareas persistente:** Crea un gestor de tareas que almacene su información en un archivo JSON.
 - [✅] **22. Analizador de registros (Logs):** Desarrolla un programa que lea archivos .log y extraiga información relevante.
 - [ ] **23. Buscador avanzado de archivos:** Crea una herramienta de búsqueda de archivos desde la terminal.
-- [ ] **24. Detector de archivos duplicados:** Desarrolla un programa que identifique archivos duplicados dentro de un directorio.
+- [✅] **24. Detector de archivos duplicados:** Desarrolla un programa que identifique archivos duplicados dentro de un directorio.
 - [ ] **25. Sistema de inventario con genéricos:** Desarrolla un inventario que pueda almacenar diferentes tipos de productos.
 - [ ] **26. Sistema de biblioteca:** Crea un sistema para administrar una biblioteca.
 - [ ] **27. Implementa tu propio iterador:** Crea un iterador personalizado que genere números de Fibonacci.
