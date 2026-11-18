@@ -12,12 +12,11 @@ fn p_a_i(string: &str) -> String {
 enum Structs {
     Tech,
     Health,
-    Clothes
+    Clothes,
 }
 
 const PARAMS: [&str; 3] = ["Nombre", "Cantidad", "Precio"];
 const LISTSTRUCTS: [Structs; 3] = [Structs::Tech, Structs::Health, Structs::Clothes];
-
 
 trait Info {
     fn show_info(&self);
@@ -113,7 +112,11 @@ fn create_product() -> Vec<String> {
     values
 }
 
-fn save_product<T: Info + Default + 'static>(products: &mut HashMap<Structs, Vec<Box<dyn Info>>>, product: T, key: &Structs) {
+fn save_product<T: Info + Default + 'static>(
+    products: &mut HashMap<Structs, Vec<Box<dyn Info>>>,
+    product: T,
+    key: &Structs,
+) {
     match products.get_mut(key) {
         Some(list) => {
             list.push(Box::new(product));
@@ -128,46 +131,76 @@ fn main() {
     for struct_p in LISTSTRUCTS {
         products.insert(struct_p, vec![]);
     }
-    loop {
-        println!("(1) Salud");
-        println!("(2) Tecnología");
-        println!("(3) Ropa");
-        let result = p_a_i("Digita el producto a añadir:");
 
+    loop {
+        println!("(1) Añadir productos");
+        println!("(2) Ver productos");
+        println!("(0) Salir");
+        let result = p_a_i("Que deseas hacer?");
         let instruction: i32 = result.trim().parse().unwrap_or_default();
 
         match instruction {
+            0 => {
+                println!("Hasta pronto!");
+                break;
+            }
             1 => {
-                let values = create_product();
-                let product = Health {
-                    name: values[0].clone(),
-                    quantity: values[1].trim().parse().unwrap_or_default(),
-                    price: values[2].trim().parse().unwrap_or_default(),
-                    ..Default::default()
-                };
-                save_product(&mut products, product, &Structs::Health);
+                println!("(1) Salud");
+                println!("(2) Tecnología");
+                println!("(3) Ropa");
+                println!("(0) Volver");
+                let result = p_a_i("Digita el producto a añadir:");
+
+                let instruction: i32 = result.trim().parse().unwrap_or_default();
+
+                match instruction {
+                    0 => {}
+                    1 => {
+                        let values = create_product();
+                        let product = Health {
+                            name: values[0].trim().to_string(),
+                            quantity: values[1].trim().parse().unwrap_or_default(),
+                            price: values[2].trim().parse().unwrap_or_default(),
+                            ..Default::default()
+                        };
+                        save_product(&mut products, product, &Structs::Health);
+                    }
+                    2 => {
+                        let values = create_product();
+                        let product = Tech {
+                            name: values[0].trim().to_string(),
+                            quantity: values[1].trim().parse().unwrap_or_default(),
+                            price: values[2].trim().parse().unwrap_or_default(),
+                            ..Default::default()
+                        };
+                        save_product(&mut products, product, &Structs::Tech);
+                    }
+                    3 => {
+                        let values = create_product();
+                        let product = Clothes {
+                            name: values[0].trim().to_string(),
+                            quantity: values[1].trim().parse().unwrap_or_default(),
+                            price: values[2].trim().parse().unwrap_or_default(),
+                            ..Default::default()
+                        };
+                        save_product(&mut products, product, &Structs::Clothes);
+                    }
+                    _ => println!("Instrucción no valida"),
+                }
             }
             2 => {
-                let values = create_product();
-                let product = Tech {
-                    name: values[0].clone(),
-                    quantity: values[1].trim().parse().unwrap_or_default(),
-                    price: values[2].trim().parse().unwrap_or_default(),
-                    ..Default::default()
-                };
-                save_product(&mut products, product, &Structs::Tech);
-            }
-            3 => {
-                let values = create_product();
-                let product = Clothes {
-                    name: values[0].clone(),
-                    quantity: values[1].trim().parse().unwrap_or_default(),
-                    price: values[2].trim().parse().unwrap_or_default(),
-                    ..Default::default()
-                };
-                save_product(&mut products, product, &Structs::Clothes);
+                for (key, lists) in &products {
+                    println!("{:#^20}", "");
+                    println!("Producto: {:?}", key);
+                    for product in lists {
+                        product.show_info();
+                        println!("");
+                    }
+                    println!("{:#^20}", "");
+                }
             }
             _ => println!("Instrucción no valida"),
         }
+        println!("");
     }
 }
