@@ -1,4 +1,5 @@
 // * Crea un iterador personalizado que genere números de Fibonacci.
+// ? EXTRA: Crear un iterador para los numeros primos
 
 struct NumFib {
     vec: Vec<i128>,
@@ -25,13 +26,52 @@ impl Iterator for NumFib {
     }
 }
 
+
+struct PrimerNumber {
+    vec: Vec<i128>,
+    num: i128
+}
+
+impl PrimerNumber {
+    fn iterator () -> PrimerNumber {
+        PrimerNumber { vec: Vec::new(), num: 2 }
+    }
+}
+
+impl Iterator for PrimerNumber {
+    type Item = i128;
+    fn next(&mut self) -> Option<Self::Item> {
+        let mut temp: i128 = self.num;
+        loop {
+            let result = self.vec.iter().find(|x| temp % *x == 0);
+            match result {
+                Some(_) => {
+                    temp += 1;
+                }
+                None => {
+                    self.vec.push(temp);
+                    break;
+                }
+            }
+        }
+        self.num = temp;
+        Some(temp)
+    }
+}
+
 fn main() {
-    let mut vec_num_fib: NumFib = NumFib::iterator();
+    let mut vec_num_fib = NumFib::iterator();
+    let mut vec_prime_numbers = PrimerNumber::iterator();
 
     for _ in 0..5 {
         println!("{:?}", vec_num_fib.next());
     }
 
+    println!("");
+    for _ in 0..5 {
+        println!("{:?}", vec_prime_numbers.next());
+    }
+    
 
     // ? uncomment for test
     // for _ in 0..100 {
